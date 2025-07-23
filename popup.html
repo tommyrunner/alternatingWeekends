@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>大小周休息日助手</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>🗓️ 大小周休息日助手</h1>
+      </div>
+
+      <div class="calendar-section">
+        <div class="month-nav">
+          <button id="prevMonth">‹</button>
+          <span id="currentMonth"></span>
+          <button id="nextMonth">›</button>
+        </div>
+
+        <div class="selected-date-info">
+          <div id="selectedDate">今天</div>
+          <div id="lunarDate" class="lunar-text">农历信息</div>
+        </div>
+
+        <div class="calendar-grid" id="calendarGrid">
+          <!-- 日历网格将通过JS生成 -->
+        </div>
+      </div>
+
+      <div class="legend">
+        <div class="legend-item">
+          <span class="single-rest-week"></span>
+          <span>单休周（周日休息）</span>
+        </div>
+        <div class="legend-item">
+          <span class="double-rest-week"></span>
+          <span>双休周（周六日休息）</span>
+        </div>
+      </div>
+
+      <div class="settings-section">
+        <label for="firstSingleWeek">设置第一个单休周的周一日期：</label>
+        <input type="date" id="firstSingleWeek" />
+        <button id="saveSettings">保存设置</button>
+      </div>
+    </div>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

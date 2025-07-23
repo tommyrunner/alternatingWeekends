@@ -1,0 +1,36 @@
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景圆形 -->
+  <circle cx="64" cy="64" r="60" fill="#4facfe" stroke="#2196F3" stroke-width="4"/>
+  
+  <!-- 日历框架 -->
+  <rect x="24" y="32" width="80" height="64" fill="#ffffff" rx="8" ry="8"/>
+  <rect x="24" y="32" width="80" height="16" fill="#2196F3" rx="8" ry="8"/>
+  <rect x="24" y="40" width="80" height="8" fill="#2196F3"/>
+  
+  <!-- 日历顶部孔 -->
+  <circle cx="40" cy="24" r="4" fill="#757575"/>
+  <circle cx="88" cy="24" r="4" fill="#757575"/>
+  
+  <!-- 日历网格线 -->
+  <line x1="38" y1="48" x2="38" y2="88" stroke="#e0e0e0" stroke-width="1"/>
+  <line x1="52" y1="48" x2="52" y2="88" stroke="#e0e0e0" stroke-width="1"/>
+  <line x1="66" y1="48" x2="66" y2="88" stroke="#e0e0e0" stroke-width="1"/>
+  <line x1="80" y1="48" x2="80" y2="88" stroke="#e0e0e0" stroke-width="1"/>
+  <line x1="94" y1="48" x2="94" y2="88" stroke="#e0e0e0" stroke-width="1"/>
+  
+  <line x1="32" y1="60" x2="96" y2="60" stroke="#e0e0e0" stroke-width="1"/>
+  <line x1="32" y1="72" x2="96" y2="72" stroke="#e0e0e0" stroke-width="1"/>
+  <line x1="32" y1="84" x2="96" y2="84" stroke="#e0e0e0" stroke-width="1"/>
+  
+  <!-- 休息日标记 -->
+  <!-- 单休周标记（橙色） -->
+  <rect x="68" y="52" width="12" height="8" fill="#ff9800" rx="2"/>
+  
+  <!-- 双休周标记（绿色） -->
+  <rect x="82" y="52" width="12" height="8" fill="#4CAF50" rx="2"/>
+  <rect x="54" y="64" width="12" height="8" fill="#4CAF50" rx="2"/>
+  
+  <!-- 另一个双休周 -->
+  <rect x="68" y="76" width="12" height="8" fill="#4CAF50" rx="2"/>
+  <rect x="82" y="76" width="12" height="8" fill="#4CAF50" rx="2"/>
+</svg> 

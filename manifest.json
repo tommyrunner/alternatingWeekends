@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "大小周休息日助手",
+  "version": "1.0",
+  "description": "根据设定的第一个单休日显示大小周休息日安排",
+  "permissions": [
+    "storage"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "大小周休息日助手",
+    "default_icon": {
+      "16": "images/icon.png",
+      "32": "images/icon.png",
+      "48": "images/icon.png",
+      "128": "images/icon.png"
+    }
+  },
+  "icons": {
+    "16": "images/icon.png",
+    "32": "images/icon.png",
+    "48": "images/icon.png",
+    "128": "images/icon.png"
+  }
+} 
