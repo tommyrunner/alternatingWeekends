@@ -1,14 +1,16 @@
 {
   "manifest_version": 3,
   "name": "大小周休息日助手",
-  "version": "1.0",
-  "description": "根据设定的第一个单休日显示大小周休息日安排",
+  "version": "1.0.0",
+  "description": "智能显示大小周休息日安排，支持自定义配置和农历显示的Chrome浏览器插件",
+  "author": "Tommy Runner",
   "permissions": [
     "storage"
   ],
+  "host_permissions": [],
   "action": {
     "default_popup": "popup.html",
-    "default_title": "大小周休息日助手",
+    "default_title": "大小周休息日助手 - 点击查看休息日安排",
     "default_icon": {
       "16": "images/icon.png",
       "32": "images/icon.png",
@@ -21,5 +23,12 @@
     "32": "images/icon.png",
     "48": "images/icon.png",
     "128": "images/icon.png"
-  }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  },
+  "minimum_chrome_version": "88"
 } 

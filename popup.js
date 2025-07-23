@@ -1,5 +1,8 @@
 /**
  * 大小周休息日助手 - 弹窗逻辑
+ * @fileoverview Chrome插件弹窗页面的主要逻辑，用于显示大小周休息日安排
+ * @author Tommy Runner
+ * @version 1.0.0
  */
 
 // DOM 元素
@@ -18,8 +21,12 @@ let selectedDate = new Date();
 
 /**
  * 简化的农历转换函数
- * @param {Date} date - 公历日期
- * @returns {string} 农历日期字符串
+ * @description 将公历日期转换为农历日期显示
+ * @param {Date} date - 需要转换的公历日期
+ * @returns {string} 格式化的农历日期字符串，如"农历2024年腊月初八"
+ * @example
+ * // 返回 "农历2024年腊月初八"
+ * toLunar(new Date(2024, 11, 8))
  */
 function toLunar(date) {
     const lunarMonths = ["正", "二", "三", "四", "五", "六", "七", "八", "九", "十", "冬", "腊"];
@@ -46,8 +53,13 @@ function toLunar(date) {
 
 /**
  * 计算两个日期间的周数差
+ * @description 计算目标日期与设定的第一个单休周周一的周数差值
  * @param {Date} date - 目标日期
- * @returns {number} 周数差
+ * @returns {number} 周数差，正数表示目标日期在基准日期之后
+ * @example
+ * // 如果基准日期是2024-12-16（周一），目标日期是2024-12-23（周一）
+ * // 返回 1
+ * calculateWeeksDiff(new Date(2024, 11, 23))
  */
 function calculateWeeksDiff(date) {
     const firstWeek = firstSingleWeekInput.value || '2024-12-16';
@@ -66,9 +78,15 @@ function calculateWeeksDiff(date) {
 }
 
 /**
- * 判断是否为双休周
- * @param {number} weeksDiff - 周数差
- * @returns {boolean} 是否为双休周
+ * 判断指定周数差对应的周是否为双休周
+ * @description 根据大小周轮换规律判断是否为双休周（周六日休息）
+ * @param {number} weeksDiff - 与基准周的周数差
+ * @returns {boolean} true表示双休周，false表示单休周
+ * @example
+ * // 第0周为双休周，返回true
+ * isDoubleRestWeek(0)
+ * // 第1周为单休周，返回false  
+ * isDoubleRestWeek(1)
  */
 function isDoubleRestWeek(weeksDiff) {
     const normalizedWeeksDiff = ((weeksDiff % 2) + 2) % 2;
@@ -85,6 +103,8 @@ document.addEventListener('DOMContentLoaded', async function() {
 
 /**
  * 更新选中日期信息显示
+ * @description 更新页面上显示的选中日期和对应的农历信息
+ * @returns {void}
  */
 function updateSelectedDateInfo() {
     const today = new Date();
@@ -101,6 +121,8 @@ function updateSelectedDateInfo() {
 
 /**
  * 绑定事件监听器
+ * @description 为页面元素绑定相应的事件处理函数
+ * @returns {void}
  */
 function bindEvents() {
     saveSettingsBtn.addEventListener('click', saveSettings);
@@ -116,6 +138,10 @@ function bindEvents() {
 
 /**
  * 保存设置到Chrome存储
+ * @description 将用户设置的第一个单休周日期保存到Chrome同步存储中
+ * @async
+ * @returns {Promise<void>}
+ * @throws {Error} 当保存失败时抛出错误
  */
 async function saveSettings() {
     const firstSingleWeek = firstSingleWeekInput.value;
@@ -148,6 +174,10 @@ async function saveSettings() {
 
 /**
  * 从Chrome存储加载设置
+ * @description 从Chrome同步存储中读取用户之前保存的设置
+ * @async  
+ * @returns {Promise<void>}
+ * @throws {Error} 当读取失败时抛出错误
  */
 async function loadSettings() {
     try {
@@ -167,6 +197,8 @@ async function loadSettings() {
 
 /**
  * 渲染日历
+ * @description 根据当前显示月份渲染完整的日历界面，包括休息日标记
+ * @returns {void}
  */
 function renderCalendar() {
     const year = currentDate.getFullYear();
@@ -231,10 +263,11 @@ function renderCalendar() {
 
 /**
  * 创建日期元素
- * @param {number} day - 日期
- * @param {Date} dateObj - 日期对象
- * @param {boolean} isOtherMonth - 是否为其他月份
- * @returns {HTMLElement} 日期元素
+ * @description 创建单个日期的DOM元素，包含相应的样式类和事件处理
+ * @param {number} day - 日期数字（1-31）
+ * @param {Date} dateObj - 对应的日期对象
+ * @param {boolean} isOtherMonth - 是否为非当前显示月份的日期
+ * @returns {HTMLElement} 创建的日期DOM元素
  */
 function createDayElement(day, dateObj, isOtherMonth) {
     const dayElement = document.createElement('div');
@@ -285,8 +318,17 @@ function createDayElement(day, dateObj, isOtherMonth) {
 
 /**
  * 获取休息日类型
- * @param {Date} date - 日期
- * @returns {string|null} 休息日类型 ('single-rest-day'、'double-rest-day' 或 null)
+ * @description 根据日期判断是否为休息日以及休息日类型
+ * @param {Date} date - 要判断的日期
+ * @returns {string|null} 返回休息日类型CSS类名或null
+ *   - 'single-rest-day': 单休日（周日）
+ *   - 'double-rest-day': 双休日（周六或周日）  
+ *   - null: 工作日
+ * @example
+ * // 双休周的周六，返回 'double-rest-day'
+ * getRestDayType(new Date(2024, 11, 21)) 
+ * // 单休周的周一，返回 null
+ * getRestDayType(new Date(2024, 11, 23))
  */
 function getRestDayType(date) {
     const weeksDiff = calculateWeeksDiff(date);
@@ -304,8 +346,12 @@ function getRestDayType(date) {
 
 /**
  * 获取日期所在周的类型描述
- * @param {Date} date - 日期
- * @returns {string} 周类型描述
+ * @description 返回指定日期所在周的类型描述文字
+ * @param {Date} date - 要查询的日期
+ * @returns {string} 周类型描述，如"双休周（周六日休息）"或"单休周（周日休息）"
+ * @example
+ * // 返回 "双休周（周六日休息）"
+ * getWeekTypeDescription(new Date(2024, 11, 21))
  */
 function getWeekTypeDescription(date) {
     const weeksDiff = calculateWeeksDiff(date);

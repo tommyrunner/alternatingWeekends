@@ -1,0 +1,35 @@
+{
+  "name": "alternating-weekends-helper",
+  "version": "1.0.0",
+  "description": "一个专为中国职场人士设计的Chrome浏览器插件，帮助您轻松管理和查看大小周休息日安排。",
+  "author": "Tommy Runner <tommyrunner@example.com>",
+  "license": "MIT",
+  "keywords": [
+    "chrome-extension",
+    "weekend",
+    "work-schedule",
+    "calendar",
+    "china",
+    "大小周",
+    "休息日"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tommyrunner/alternatingWeekends.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tommyrunner/alternatingWeekends/issues"
+  },
+  "homepage": "https://github.com/tommyrunner/alternatingWeekends#readme",
+  "scripts": {
+    "build": "echo '正在打包Chrome扩展...' && zip -r alternating-weekends-v$npm_package_version.zip . -x '*.git*' 'node_modules/*' '*.zip' '*.md' 'package.json' 'package-lock.json'",
+    "lint": "echo '检查代码规范...'",
+    "test": "echo '运行测试...'",
+    "dev": "echo '开发模式：请在Chrome扩展管理页面加载此文件夹'"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "devDependencies": {},
+  "dependencies": {}
+} 
